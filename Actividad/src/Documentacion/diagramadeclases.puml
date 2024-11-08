@@ -1,0 +1,53 @@
+@startuml diagramadeclases
+
+package Models {
+    interface State {
+        +void insertarDinero()
+        +void dispensarProducto()
+    }
+
+    class VendingMachine {
+        -State sinDinero
+        -State dineroInsertado
+        -State productoDispensado
+        -State estadoActual
+        +VendingMachine()
+        +void setState(State state)
+        +State getSinDinero()
+        +State getDineroInsertado()
+        +State getProductoDispensado()
+        +void insertarDinero()
+        +void dispensarProducto()
+    }
+
+    class SinDinero {
+        -VendingMachine vendingMachine
+        +SinDinero(VendingMachine vendingMachine)
+        +void insertarDinero()
+        +void dispensarProducto()
+    }
+
+    class DineroInsertado {
+        -VendingMachine vendingMachine
+        +DineroInsertado(VendingMachine vendingMachine)
+        +void insertarDinero()
+        +void dispensarProducto()
+    }
+
+    class ProductoDispensado {
+        -VendingMachine vendingMachine
+        +ProductoDispensado(VendingMachine vendingMachine)
+        +void insertarDinero()
+        +void dispensarProducto()
+    }
+
+    VendingMachine --> State
+    SinDinero --> State
+    DineroInsertado --> State
+    ProductoDispensado --> State
+    VendingMachine --> SinDinero
+    VendingMachine --> DineroInsertado
+    VendingMachine --> ProductoDispensado
+}
+
+@enduml
